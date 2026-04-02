@@ -1,5 +1,3 @@
-/* style.css */
-
 * {
     margin: 0;
     padding: 0;
@@ -7,64 +5,255 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #e8e8e8 0%, #c9c9c9 100%);
     min-height: 100vh;
     padding: 60px 20px;
     position: relative;
-    overflow-x: hidden;
 }
 
-/* Декоративные элементы фона */
+/* Декоративные элементы */
 body::before {
-    content: "✦";
-    position: absolute;
-    font-size: 200px;
-    color: rgba(212, 175, 55, 0.03);
-    bottom: -50px;
-    left: -50px;
+    content: "§";
+    position: fixed;
+    font-size: 300px;
+    color: rgba(180, 150, 80, 0.05);
+    bottom: -100px;
+    left: -100px;
     pointer-events: none;
-    transform: rotate(-15deg);
+    font-family: 'Cormorant Garamond', serif;
 }
 
 body::after {
-    content: "✦";
-    position: absolute;
-    font-size: 300px;
-    color: rgba(212, 175, 55, 0.03);
-    top: -100px;
+    content: "⚡";
+    position: fixed;
+    font-size: 250px;
+    color: rgba(180, 150, 80, 0.05);
+    top: -80px;
     right: -80px;
     pointer-events: none;
-    transform: rotate(10deg);
 }
 
 .container {
-    max-width: 680px;
+    max-width: 650px;
     margin: 0 auto;
-    background: #faf9f7;
-    border-radius: 32px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     position: relative;
-    z-index: 1;
-    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
-/* Декоративная верхняя полоска */
-.container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+.container:hover {
+    transform: translateY(-5px);
+}
+
+.header-decoration {
     height: 4px;
-    background: linear-gradient(90deg, #d4af37 0%, #b8960c 50%, #d4af37 100%);
+    background: linear-gradient(90deg, #b8960c 0%, #d4af37 50%, #b8960c 100%);
+}
+
+h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 600;
+    text-align: center;
+    color: #2c2c2c;
+    margin-top: 40px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #7a7a7a;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+form {
+    padding: 30px 45px 45px 45px;
+}
+
+.form-group {
+    margin-bottom: 28px;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #4a4a4a;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.label-text {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.required {
+    color: #d4af37;
+    margin-left: 4px;
+    font-weight: 600;
+}
+
+input:not([type="radio"]):not([type="checkbox"]),
+select,
+textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+input:not([type="radio"]):not([type="checkbox"]):focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #d4af37;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+}
+
+input:not([type="radio"]):not([type="checkbox"]):hover,
+select:hover,
+textarea:hover {
+    border-color: #c5a020;
+}
+
+/* Radio group - компактное расположение в строку */
+.radio-group {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: 500;
+    position: relative;
+    padding: 6px 0;
+}
+
+.radio-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio-custom {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d0d0d0;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom {
+    border-color: #d4af37;
+    background: #d4af37;
+    box-shadow: inset 0 0 0 4px white;
+}
+
+.radio-label:hover .radio-custom {
+    border-color: #d4af37;
+}
+
+.radio-text {
+    font-size: 14px;
+    color: #4a4a4a;
+}
+
+/* Checkbox стилизация */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    margin-bottom: 0;
+    padding: 10px 0;
+}
+
+.checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d0d0d0;
+    border-radius: 6px;
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
+    background: #d4af37;
+    border-color: #d4af37;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.checkbox-label:hover .checkbox-custom {
+    border-color: #d4af37;
+}
+
+.checkbox-text {
+    font-size: 14px;
+    color: #4a4a4a;
+    font-weight: 500;
+}
+
+/* Ошибки над полями */
+.error-group {
+    animation: shake 0.4s ease;
+}
+
+.field-error {
+    color: #dc3545;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #fee;
+    border-radius: 8px;
+    border-left: 3px solid #dc3545;
+    animation: fadeInUp 0.3s ease-out;
 }
 
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(-10px);
     }
     to {
         opacity: 1;
@@ -72,289 +261,29 @@ body::after {
     }
 }
 
-h2 {
-    text-align: center;
-    color: #2c2c2c;
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-    padding: 40px 40px 0 40px;
-    position: relative;
-    display: inline-block;
-    width: 100%;
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 
-h2::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #d4af37, #f5e6b3);
-    margin: 15px auto 0;
-    border-radius: 3px;
-}
-
-form {
-    padding: 30px 40px 40px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-/* Группы полей */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.form-group label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #4a4a4a;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+/* Success message */
+.success-message {
+    margin: 0 45px 25px 45px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f0f9f0 0%, #e8f5e8 100%);
+    border-radius: 16px;
+    border-left: 4px solid #4caf50;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 15px;
+    animation: slideInRight 0.4s ease-out;
 }
 
-.form-group label::before {
-    content: "▸";
-    color: #d4af37;
-    font-size: 12px;
-}
-
-/* Поля ввода */
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-input[type="date"],
-select,
-textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border: 1.5px solid #e5e0d8;
-    border-radius: 12px;
-    font-size: 15px;
-    transition: all 0.3s ease;
-    font-family: inherit;
-    background: white;
-    color: #2c2c2c;
-}
-
-input[type="text"]:focus,
-input[type="tel"]:focus,
-input[type="email"]:focus,
-input[type="date"]:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: #d4af37;
-    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
-    transform: translateY(-1px);
-}
-
-input[type="text"]:hover,
-input[type="tel"]:hover,
-input[type="email"]:hover,
-input[type="date"]:hover,
-select:hover,
-textarea:hover {
-    border-color: #d4af37;
-}
-
-/* Радиокнопки */
-.radio-group-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.radio-group-wrapper label {
-    margin-bottom: 8px;
-}
-
-.radio-group {
-    display: flex;
-    gap: 32px;
-    align-items: center;
-    padding: 8px 0;
-}
-
-.radio-option {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    position: relative;
-    padding: 8px 16px;
-    background: #f5f3f0;
-    border-radius: 40px;
-    transition: all 0.3s ease;
-}
-
-.radio-option:hover {
-    background: #ede8e2;
-    transform: translateY(-1px);
-}
-
-.radio-option input[type="radio"] {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    accent-color: #d4af37;
-}
-
-.radio-option span {
-    color: #4a4a4a;
-    font-weight: 500;
-    font-size: 14px;
-}
-
-/* Чекбокс */
-.checkbox-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    background: #f5f3f0;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.checkbox-wrapper:hover {
-    background: #ede8e2;
-    transform: translateX(5px);
-}
-
-.checkbox-wrapper input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    accent-color: #d4af37;
-}
-
-.checkbox-wrapper span {
-    color: #4a4a4a;
-    font-weight: 500;
-    font-size: 14px;
-}
-
-/* Select multiple */
-select[multiple] {
-    min-height: 180px;
-    background: white;
-    padding: 8px;
-}
-
-select[multiple] option {
-    padding: 10px 12px;
-    cursor: pointer;
-    border-radius: 8px;
-    margin: 2px 0;
-    transition: all 0.2s ease;
-}
-
-select[multiple] option:hover {
-    background: linear-gradient(135deg, #d4af37 0%, #c5a020 100%);
-    color: white;
-}
-
-select[multiple] option:checked {
-    background: linear-gradient(135deg, #d4af37 0%, #b8960c 100%);
-    color: white;
-}
-
-/* Textarea */
-textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-/* Кнопка */
-button {
-    background: linear-gradient(135deg, #4a4a4a 0%, #2c2c2c 100%);
-    color: white;
-    border: none;
-    padding: 16px 32px;
-    border-radius: 40px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 16px;
-    position: relative;
-    overflow: hidden;
-    letter-spacing: 1px;
-}
-
-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
-    transition: left 0.5s ease;
-}
-
-button:hover::before {
-    left: 100%;
-}
-
-button:hover {
-    background: linear-gradient(135deg, #5a5a5a 0%, #3a3a3a 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-/* Сообщения */
-.error, .success {
-    padding: 14px 18px;
-    border-radius: 12px;
-    margin: 0 40px 20px 40px;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    animation: slideIn 0.4s ease-out;
-}
-
-.error {
-    background: #fee9e6;
-    color: #c73e1d;
-    border-left: 4px solid #c73e1d;
-}
-
-.error::before {
-    content: "⚠";
-    font-size: 18px;
-}
-
-.success {
-    background: #e8f5e9;
-    color: #2e7d32;
-    border-left: 4px solid #2e7d32;
-}
-
-.success::before {
-    content: "✓";
-    font-size: 20px;
-    font-weight: bold;
-}
-
-@keyframes slideIn {
+@keyframes slideInRight {
     from {
         opacity: 0;
-        transform: translateX(-20px);
+        transform: translateX(30px);
     }
     to {
         opacity: 1;
@@ -362,10 +291,117 @@ button:active {
     }
 }
 
-/* Placeholder стили */
-::placeholder {
-    color: #bbb5ab;
-    opacity: 1;
+.success-icon {
+    width: 40px;
+    height: 40px;
+    background: #4caf50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.success-content strong {
+    display: block;
+    color: #2e7d32;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.success-content p {
+    color: #4a4a4a;
+    font-size: 13px;
+}
+
+/* Select multiple */
+select[multiple] {
+    padding: 10px;
+    background: #fafafa;
+}
+
+select[multiple] option {
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 2px 0;
+    transition: all 0.2s;
+    font-family: 'Montserrat', monospace;
+    font-size: 13px;
+}
+
+select[multiple] option:hover {
+    background: #d4af37 !important;
+    color: white;
+}
+
+select[multiple] option:checked {
+    background: linear-gradient(135deg, #d4af37, #b8960c);
+    color: white;
+}
+
+.hint {
+    font-size: 11px;
+    color: #999;
+    margin-top: 6px;
+    font-style: italic;
+}
+
+/* Кнопка отправки */
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #4a4a4a 0%, #2c2c2c 100%);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #5a5a5a 0%, #3a3a3a 100%);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 18px;
+    transition: transform 0.3s;
+}
+
+.submit-btn:hover .btn-icon {
+    transform: translateX(5px);
 }
 
 /* Адаптивность */
@@ -375,103 +411,43 @@ button:active {
     }
     
     .container {
-        border-radius: 24px;
+        border-radius: 20px;
     }
     
     h2 {
-        font-size: 26px;
-        padding: 30px 30px 0 30px;
+        font-size: 32px;
+        margin-top: 25px;
     }
     
     form {
         padding: 20px 25px 30px 25px;
-        gap: 20px;
     }
     
     .radio-group {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
+        gap: 20px;
+        flex-wrap: wrap;
     }
     
-    .radio-option {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .error, .success {
-        margin: 0 25px 15px 25px;
+    .success-message {
+        margin: 0 25px 20px 25px;
+        padding: 15px;
     }
 }
 
-/* Декоративные элементы внутри формы */
-.form-group {
-    position: relative;
-}
-
-/* Красивые иконки для полей (опционально) */
-.form-group:has(input[type="text"])::after {
-    content: "👤";
-    position: absolute;
-    right: 16px;
-    bottom: 14px;
-    opacity: 0.4;
-    font-size: 14px;
-    pointer-events: none;
-}
-
-.form-group:has(input[type="tel"])::after {
-    content: "📞";
-    position: absolute;
-    right: 16px;
-    bottom: 14px;
-    opacity: 0.4;
-    font-size: 14px;
-    pointer-events: none;
-}
-
-.form-group:has(input[type="email"])::after {
-    content: "✉";
-    position: absolute;
-    right: 16px;
-    bottom: 14px;
-    opacity: 0.4;
-    font-size: 14px;
-    pointer-events: none;
-}
-
-.form-group:has(input[type="date"])::after {
-    content: "📅";
-    position: absolute;
-    right: 16px;
-    bottom: 14px;
-    opacity: 0.4;
-    font-size: 14px;
-    pointer-events: none;
-}
-
-/* Анимация при фокусе на иконках */
-.form-group:focus-within::after {
-    opacity: 0.8;
-    transform: scale(1.1);
-    transition: all 0.3s ease;
-}
-
-/* Стилизация скроллбара для select */
-select[multiple]::-webkit-scrollbar {
+/* Стилизация скроллбара */
+::-webkit-scrollbar {
     width: 8px;
 }
 
-select[multiple]::-webkit-scrollbar-track {
-    background: #f0ede8;
-    border-radius: 10px;
+::-webkit-scrollbar-track {
+    background: #f0f0f0;
 }
 
-select[multiple]::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: #d4af37;
-    border-radius: 10px;
+    border-radius: 4px;
 }
 
-select[multiple]::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background: #b8960c;
 }
