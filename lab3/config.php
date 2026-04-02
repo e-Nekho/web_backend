@@ -2,8 +2,8 @@
 // config.php - отдельный файл с настройками
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'form_db');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_USER', 'u82084');  // Ваш системный пользователь
+define('DB_PASS', '');         // Оставляем пустым
 
 // Допустимые значения для валидации
 define('ALLOWED_GENDERS', serialize(['male', 'female', 'other']));
@@ -22,7 +22,8 @@ function getDBConnection() {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {
-        die("Connection failed: " . $e->getMessage());
+        error_log("DB Connection Error: " . $e->getMessage());
+        throw new Exception("Ошибка подключения к базе данных. Пожалуйста, обратитесь к администратору.");
     }
 }
 ?>
