@@ -48,6 +48,7 @@
     <ul class="menu">
         <li><a href="lab1/index.html">Лабораторная работа 1</a></li>
         <li><a href="lab2/index.html">Лабораторная работа 2</a></li>
+        <li><a href="lab3/index.php">Лабораторная работа 3</a></li>
     </ul>
 
     <footer>
