@@ -1,33 +1,235 @@
+/* style.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial;
-    background: #f5f5f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
 }
 
 .container {
-    width: 600px;
-    margin: auto;
+    max-width: 600px;
+    margin: 0 auto;
     background: white;
-    padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    padding: 40px;
+    animation: fadeIn 0.5s ease-in;
 }
 
-input, textarea, select {
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+select,
+textarea {
     width: 100%;
-    margin-bottom: 10px;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+label {
+    font-weight: 600;
+    color: #555;
+    margin-top: 10px;
+    display: block;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.radio-group label {
+    margin: 0;
+    font-weight: normal;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+select[multiple] {
+    min-height: 150px;
+    background: white;
+}
+
+select[multiple] option {
     padding: 8px;
+    cursor: pointer;
+}
+
+select[multiple] option:hover {
+    background: #667eea;
+    color: white;
 }
 
 button {
-    background: #4CAF50;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 10px;
     border: none;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
 }
 
 .error {
-    color: red;
+    background: #fee;
+    color: #c33;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border-left: 4px solid #c33;
+    margin-bottom: 15px;
+    font-size: 14px;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 
 .success {
-    color: green;
+    background: #d4edda;
+    color: #155724;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border-left: 4px solid #28a745;
+    margin-bottom: 15px;
+    font-size: 14px;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Стили для placeholder */
+::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+/* Стили для чекбокса с контрактом */
+label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+label:has(input[type="checkbox"]):hover {
+    color: #667eea;
+}
+
+/* Стили для группы радиокнопок */
+label:has(input[type="radio"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin-right: 20px;
 }

@@ -141,5 +141,18 @@ if ($success) {
 </form>
 
 </div>
+<style>
+    /* Дополнительные анимации для интерактивности */
+    input, select, textarea, button {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Стиль для фокуса на мобильных устройствах */
+    @media (hover: hover) {
+        select[multiple] option:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    }
+</style>
 </body>
 </html>
