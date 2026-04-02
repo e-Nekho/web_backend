@@ -1,9 +1,9 @@
 <?php
 // config.php - отдельный файл с настройками
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'form_db');
-define('DB_USER', 'u82084');  // Ваш системный пользователь
-define('DB_PASS', '');         // Оставляем пустым
+define('DB_NAME', 'u68592');
+define('DB_USER', 'u68592');
+define('DB_PASS', '6714103');
 
 // Допустимые значения для валидации
 define('ALLOWED_GENDERS', serialize(['male', 'female', 'other']));
