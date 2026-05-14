@@ -98,9 +98,20 @@ if (
         WHERE login = ?
     ");
 
+    try {
+
     $stmt->execute([$login]);
 
     $user = $stmt->fetch();
+
+}
+catch (PDOException $e) {
+
+    $errors['login'] =
+        'Система авторизации недоступна. Проверьте структуру базы данных.';
+
+    $user = false;
+}
 
     if (
         $user &&
@@ -350,6 +361,7 @@ if (
             }
 
             $_SESSION['user_id'] = $app_id;
+            $is_logged_in = true;
 
             $generated_credentials = [
                 'login' => $login,
@@ -401,58 +413,6 @@ if (
         Заполните форму для участия
     </p>
 
-    <?php if (!$is_logged_in): ?>
-
-        <form method="POST">
-
-            <div class="form-group <?= isset($errors['login']) ? 'error-group' : '' ?>">
-
-                <label>
-                    <span class="label-text">
-                        Логин
-                    </span>
-                </label>
-
-                <input type="text"
-                       name="login">
-
-            </div>
-
-            <div class="form-group <?= isset($errors['login']) ? 'error-group' : '' ?>">
-
-                <label>
-                    <span class="label-text">
-                        Пароль
-                    </span>
-                </label>
-
-                <input type="password"
-                       name="password">
-
-                <?php if (isset($errors['login'])): ?>
-
-                    <div class="field-error">
-                        <?= $errors['login'] ?>
-                    </div>
-
-                <?php endif; ?>
-
-            </div>
-
-            <button type="submit"
-                    name="login_action"
-                    class="submit-btn">
-
-                <span class="btn-text">
-                    Войти
-                </span>
-
-            </button>
-
-        </form>
-
-    <?php endif; ?>
-
     <?php if ($success): ?>
 
         <div class="success-message">
@@ -498,9 +458,6 @@ if (
     <?php endif; ?>
 
     <form method="POST">
-
-        <!-- Форма полностью совместима с вашим style.css -->
-
         <!-- ФИО -->
         <div class="form-group <?= isset($errors['fullname']) ? 'error-group' : '' ?>">
 
@@ -529,11 +486,6 @@ if (
 
         </div>
 
-        <!-- Остальные поля аналогично -->
-
-        <!-- ТЫ ОСТАВЛЯЕШЬ ИХ ИЗ ПРЕДЫДУЩЕЙ ВЕРСИИ -->
-        <!-- МЕНЯЕТСЯ ТОЛЬКО ЛОГИКА -->
-
         <button type="submit"
                 name="save_form"
                 class="submit-btn">
@@ -554,6 +506,58 @@ if (
         </button>
 
     </form>
+
+    <div class="auth-divider">
+    Уже зарегистрированы?
+</div>
+
+<form method="POST" class="login-form">
+
+    <div class="form-group <?= isset($errors['login']) ? 'error-group' : '' ?>">
+
+        <label>
+            <span class="label-text">
+                Логин
+            </span>
+        </label>
+
+        <input type="text"
+               name="login">
+
+    </div>
+
+    <div class="form-group <?= isset($errors['login']) ? 'error-group' : '' ?>">
+
+        <label>
+            <span class="label-text">
+                Пароль
+            </span>
+        </label>
+
+        <input type="password"
+               name="password">
+
+        <?php if (isset($errors['login'])): ?>
+
+            <div class="field-error">
+                <?= $errors['login'] ?>
+            </div>
+
+        <?php endif; ?>
+
+    </div>
+
+    <button type="submit"
+            name="login_action"
+            class="submit-btn">
+
+        <span class="btn-text">
+            Войти
+        </span>
+
+    </button>
+
+</form>
 
     <?php if ($is_logged_in): ?>
 
