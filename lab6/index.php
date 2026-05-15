@@ -9,22 +9,61 @@ $languages = [
     "Java","Haskel","Clojure","Prolog","Scala","Go"
 ];
 
+$form_fields = [
+    'fullname',
+    'phone',
+    'email',
+    'birthdate',
+    'gender',
+    'bio',
+    'languages',
+    'contract'
+];
+
 $errors = [];
 $success = false;
 $generated_credentials = null;
 
 $is_logged_in = isset($_SESSION['user_id']);
 
+
+// ======================================================
+// ЗАГРУЗКА VALUES ИЗ COOKIES
+// ======================================================
+
 $values = [
-    'fullname' => '',
-    'phone' => '',
-    'email' => '',
-    'birthdate' => '',
-    'gender' => '',
-    'bio' => '',
-    'languages' => [],
-    'contract' => false
+    'fullname' => $_COOKIE['fullname_value'] ?? '',
+    'phone' => $_COOKIE['phone_value'] ?? '',
+    'email' => $_COOKIE['email_value'] ?? '',
+    'birthdate' => $_COOKIE['birthdate_value'] ?? '',
+    'gender' => $_COOKIE['gender_value'] ?? '',
+    'bio' => $_COOKIE['bio_value'] ?? '',
+    'languages' => isset($_COOKIE['languages_value'])
+        ? json_decode($_COOKIE['languages_value'], true)
+        : [],
+    'contract' => $_COOKIE['contract_value'] ?? false
 ];
+
+
+// ======================================================
+// ЗАГРУЗКА ОШИБОК И ИХ УДАЛЕНИЕ
+// ======================================================
+
+foreach ($form_fields as $field) {
+
+    if (!empty($_COOKIE[$field . '_error'])) {
+
+        $errors[$field] =
+            $_COOKIE[$field . '_error'];
+
+        setcookie(
+            $field . '_error',
+            '',
+            time() - 3600,
+            '/'
+        );
+    }
+}
 
 
 // ======================================================
@@ -41,7 +80,7 @@ if (isset($_GET['logout'])) {
 
 
 // ======================================================
-// ЗАГРУЗКА ДАННЫХ ПОЛЬЗОВАТЕЛЯ
+// ЗАГРУЗКА ДАННЫХ АВТОРИЗОВАННОГО ПОЛЬЗОВАТЕЛЯ
 // ======================================================
 
 if ($is_logged_in) {
@@ -52,7 +91,9 @@ if ($is_logged_in) {
         WHERE id = ?
     ");
 
-    $stmt->execute([$_SESSION['user_id']]);
+    $stmt->execute([
+        $_SESSION['user_id']
+    ]);
 
     $user = $stmt->fetch();
 
@@ -68,16 +109,25 @@ if ($is_logged_in) {
 
         $stmt = $pdo->prepare("
             SELECT programming_languages.name
+
             FROM application_languages
+
             JOIN programming_languages
-            ON application_languages.language_id = programming_languages.id
+            ON application_languages.language_id =
+               programming_languages.id
+
             WHERE application_languages.application_id = ?
         ");
 
-        $stmt->execute([$_SESSION['user_id']]);
+        $stmt->execute([
+            $_SESSION['user_id']
+        ]);
 
         $values['languages'] =
-            array_column($stmt->fetchAll(), 'name');
+            array_column(
+                $stmt->fetchAll(),
+                'name'
+            );
     }
 }
 
@@ -88,8 +138,11 @@ if ($is_logged_in) {
 
 if (isset($_POST['login_action'])) {
 
-    $login = trim($_POST['login'] ?? '');
-    $password = trim($_POST['password'] ?? '');
+    $login =
+        trim($_POST['login'] ?? '');
+
+    $password =
+        trim($_POST['password'] ?? '');
 
     try {
 
@@ -105,12 +158,16 @@ if (isset($_POST['login_action'])) {
 
         if (
             $user &&
-            password_verify($password, $user['password_hash'])
+            password_verify(
+                $password,
+                $user['password_hash']
+            )
         ) {
 
             session_regenerate_id(true);
 
-            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_id'] =
+                $user['id'];
 
             header("Location: index.php");
             exit();
@@ -124,25 +181,45 @@ if (isset($_POST['login_action'])) {
     catch (PDOException $e) {
 
         $errors['login'] =
-            'Ошибка структуры базы данных. Проверьте schema.sql.';
+            'Ошибка структуры базы данных.';
     }
 }
 
 
 // ======================================================
-// РЕГИСТРАЦИЯ / ОБНОВЛЕНИЕ
+// СОХРАНЕНИЕ ФОРМЫ
 // ======================================================
 
 if (isset($_POST['save_form'])) {
 
-    $fullname = trim($_POST["fullname"] ?? '');
-    $phone = trim($_POST["phone"] ?? '');
-    $email = trim($_POST["email"] ?? '');
-    $birthdate = $_POST["birthdate"] ?? '';
-    $gender = $_POST["gender"] ?? '';
-    $bio = trim($_POST["bio"] ?? '');
-    $contract = isset($_POST["contract"]);
-    $langs = $_POST["languages"] ?? [];
+    $fullname =
+        trim($_POST["fullname"] ?? '');
+
+    $phone =
+        trim($_POST["phone"] ?? '');
+
+    $email =
+        trim($_POST["email"] ?? '');
+
+    $birthdate =
+        $_POST["birthdate"] ?? '';
+
+    $gender =
+        $_POST["gender"] ?? '';
+
+    $bio =
+        trim($_POST["bio"] ?? '');
+
+    $contract =
+        isset($_POST["contract"]);
+
+    $langs =
+        $_POST["languages"] ?? [];
+
+
+    // ==================================================
+    // VALUES
+    // ==================================================
 
     $values = [
         'fullname' => $fullname,
@@ -155,6 +232,71 @@ if (isset($_POST['save_form'])) {
         'contract' => $contract
     ];
 
+
+    // ==================================================
+    // СОХРАНЕНИЕ VALUES В COOKIES
+    // ==================================================
+
+    $cookie_time =
+        time() + 60 * 60 * 24 * 365;
+
+    setcookie(
+        'fullname_value',
+        $fullname,
+        $cookie_time,
+        '/'
+    );
+
+    setcookie(
+        'phone_value',
+        $phone,
+        $cookie_time,
+        '/'
+    );
+
+    setcookie(
+        'email_value',
+        $email,
+        $cookie_time,
+        '/'
+    );
+
+    setcookie(
+        'birthdate_value',
+        $birthdate,
+        $cookie_time,
+        '/'
+    );
+
+    setcookie(
+        'gender_value',
+        $gender,
+        $cookie_time,
+        '/'
+    );
+
+    setcookie(
+        'bio_value',
+        $bio,
+        $cookie_time,
+        '/'
+    );
+
+    setcookie(
+        'languages_value',
+        json_encode($langs),
+        $cookie_time,
+        '/'
+    );
+
+    setcookie(
+        'contract_value',
+        $contract ? '1' : '',
+        $cookie_time,
+        '/'
+    );
+
+
     // ==================================================
     // ВАЛИДАЦИЯ
     // ==================================================
@@ -166,6 +308,7 @@ if (isset($_POST['save_form'])) {
             $fullname
         )
     ) {
+
         $errors['fullname'] =
             'Допустимы только буквы, пробелы и дефис.';
     }
@@ -177,14 +320,19 @@ if (isset($_POST['save_form'])) {
             $phone
         )
     ) {
+
         $errors['phone'] =
-            'Допустимы цифры, пробелы, скобки и знак +.';
+            'Допустимы цифры, пробелы, скобки и +.';
     }
 
     if (
         empty($email) ||
-        !filter_var($email, FILTER_VALIDATE_EMAIL)
+        !filter_var(
+            $email,
+            FILTER_VALIDATE_EMAIL
+        )
     ) {
+
         $errors['email'] =
             'Введите корректный email.';
     }
@@ -196,8 +344,12 @@ if (isset($_POST['save_form'])) {
     }
 
     if (
-        !in_array($gender, ['male', 'female'])
+        !in_array(
+            $gender,
+            ['male', 'female']
+        )
     ) {
+
         $errors['gender'] =
             'Выберите пол.';
     }
@@ -214,6 +366,7 @@ if (isset($_POST['save_form'])) {
             $bio
         )
     ) {
+
         $errors['bio'] =
             'Биография содержит недопустимые символы.';
     }
@@ -224,158 +377,197 @@ if (isset($_POST['save_form'])) {
             'Необходимо согласие с контрактом.';
     }
 
+
     // ==================================================
-    // СОХРАНЕНИЕ
+    // СОХРАНЕНИЕ ОШИБОК В COOKIES
     // ==================================================
 
-    if (empty($errors)) {
+    if (!empty($errors)) {
 
-        // ==============================================
-        // ОБНОВЛЕНИЕ
-        // ==============================================
+        foreach ($errors as $field => $message) {
 
-        if ($is_logged_in) {
-
-            $stmt = $pdo->prepare("
-                UPDATE applications
-                SET
-                    fullname = ?,
-                    phone = ?,
-                    email = ?,
-                    birthdate = ?,
-                    gender = ?,
-                    bio = ?,
-                    contract_agreed = ?
-                WHERE id = ?
-            ");
-
-            $stmt->execute([
-                $fullname,
-                $phone,
-                $email,
-                $birthdate,
-                $gender,
-                $bio,
-                $contract ? 1 : 0,
-                $_SESSION['user_id']
-            ]);
-
-            $stmt = $pdo->prepare("
-                DELETE FROM application_languages
-                WHERE application_id = ?
-            ");
-
-            $stmt->execute([
-                $_SESSION['user_id']
-            ]);
-
-            $stmt = $pdo->prepare("
-                INSERT INTO application_languages
-                (application_id, language_id)
-                VALUES (
-                    ?,
-                    (
-                        SELECT id
-                        FROM programming_languages
-                        WHERE name = ?
-                    )
-                )
-            ");
-
-            foreach ($langs as $lang) {
-
-                $stmt->execute([
-                    $_SESSION['user_id'],
-                    $lang
-                ]);
-            }
-
-            $success = true;
+            setcookie(
+                $field . '_error',
+                $message,
+                0,
+                '/'
+            );
         }
 
-        // ==============================================
-        // НОВАЯ РЕГИСТРАЦИЯ
-        // ==============================================
+        header("Location: index.php");
+        exit();
+    }
 
-        else {
 
-            $login =
-                'user' .
-                random_int(10000, 99999);
+    // ==================================================
+    // ОЧИСТКА ОШИБОК
+    // ==================================================
 
-            $password =
-                bin2hex(random_bytes(4));
+    foreach ($form_fields as $field) {
 
-            $password_hash =
-                password_hash(
-                    $password,
-                    PASSWORD_DEFAULT
-                );
+        setcookie(
+            $field . '_error',
+            '',
+            time() - 3600,
+            '/'
+        );
+    }
 
-            $stmt = $pdo->prepare("
-                INSERT INTO applications
+
+    // ==================================================
+    // ОБНОВЛЕНИЕ
+    // ==================================================
+
+    if ($is_logged_in) {
+
+        $stmt = $pdo->prepare("
+            UPDATE applications
+
+            SET
+                fullname = ?,
+                phone = ?,
+                email = ?,
+                birthdate = ?,
+                gender = ?,
+                bio = ?,
+                contract_agreed = ?
+
+            WHERE id = ?
+        ");
+
+        $stmt->execute([
+            $fullname,
+            $phone,
+            $email,
+            $birthdate,
+            $gender,
+            $bio,
+            $contract ? 1 : 0,
+            $_SESSION['user_id']
+        ]);
+
+        $stmt = $pdo->prepare("
+            DELETE FROM application_languages
+            WHERE application_id = ?
+        ");
+
+        $stmt->execute([
+            $_SESSION['user_id']
+        ]);
+
+        $stmt = $pdo->prepare("
+            INSERT INTO application_languages
+            (application_id, language_id)
+
+            VALUES (
+                ?,
                 (
-                    login,
-                    password_hash,
-                    fullname,
-                    phone,
-                    email,
-                    birthdate,
-                    gender,
-                    bio,
-                    contract_agreed
+                    SELECT id
+                    FROM programming_languages
+                    WHERE name = ?
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ");
+            )
+        ");
+
+        foreach ($langs as $lang) {
 
             $stmt->execute([
-                $login,
-                $password_hash,
-                $fullname,
-                $phone,
-                $email,
-                $birthdate,
-                $gender,
-                $bio,
-                $contract ? 1 : 0
+                $_SESSION['user_id'],
+                $lang
             ]);
-
-            $app_id = $pdo->lastInsertId();
-
-            $stmt = $pdo->prepare("
-                INSERT INTO application_languages
-                (application_id, language_id)
-                VALUES (
-                    ?,
-                    (
-                        SELECT id
-                        FROM programming_languages
-                        WHERE name = ?
-                    )
-                )
-            ");
-
-            foreach ($langs as $lang) {
-
-                $stmt->execute([
-                    $app_id,
-                    $lang
-                ]);
-            }
-
-            session_regenerate_id(true);
-
-            $_SESSION['user_id'] = $app_id;
-
-            $is_logged_in = true;
-
-            $generated_credentials = [
-                'login' => $login,
-                'password' => $password
-            ];
-
-            $success = true;
         }
+
+        $success = true;
+    }
+
+    // ==================================================
+    // НОВАЯ РЕГИСТРАЦИЯ
+    // ==================================================
+
+    else {
+
+        $login =
+            'user' .
+            random_int(10000, 99999);
+
+        $password =
+            bin2hex(
+                random_bytes(4)
+            );
+
+        $password_hash =
+            password_hash(
+                $password,
+                PASSWORD_DEFAULT
+            );
+
+        $stmt = $pdo->prepare("
+            INSERT INTO applications
+            (
+                login,
+                password_hash,
+                fullname,
+                phone,
+                email,
+                birthdate,
+                gender,
+                bio,
+                contract_agreed
+            )
+
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ");
+
+        $stmt->execute([
+            $login,
+            $password_hash,
+            $fullname,
+            $phone,
+            $email,
+            $birthdate,
+            $gender,
+            $bio,
+            $contract ? 1 : 0
+        ]);
+
+        $app_id =
+            $pdo->lastInsertId();
+
+        $stmt = $pdo->prepare("
+            INSERT INTO application_languages
+            (application_id, language_id)
+
+            VALUES (
+                ?,
+                (
+                    SELECT id
+                    FROM programming_languages
+                    WHERE name = ?
+                )
+            )
+        ");
+
+        foreach ($langs as $lang) {
+
+            $stmt->execute([
+                $app_id,
+                $lang
+            ]);
+        }
+
+        session_regenerate_id(true);
+
+        $_SESSION['user_id'] =
+            $app_id;
+
+        $is_logged_in = true;
+
+        $generated_credentials = [
+            'login' => $login,
+            'password' => $password
+        ];
+
+        $success = true;
     }
 }
 
@@ -403,6 +595,7 @@ if (isset($_POST['save_form'])) {
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap"
           rel="stylesheet">
+
 </head>
 
 <body>

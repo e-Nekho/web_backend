@@ -48,3 +48,10 @@ CREATE TABLE application_languages (
     FOREIGN KEY (language_id)
         REFERENCES programming_languages(id)
 );
+
+CREATE TABLE admins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    login VARCHAR(64) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL
+);
