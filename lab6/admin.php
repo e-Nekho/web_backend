@@ -1,8 +1,13 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('error_reporting', E_ALL);
+error_log("=== admin.php вызван ===");
+
 require 'db.php';
 
 function unauthorized() {
+    ob_end_clean();
 
     header('HTTP/1.1 401 Unauthorized');
 
