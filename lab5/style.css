@@ -451,7 +451,7 @@ select[multiple] option:checked {
 ::-webkit-scrollbar-thumb:hover {
     background: #b8960c;
 }
-
+/*
 .auth-divider {
     text-align: center;
     margin: 20px 0;
@@ -469,4 +469,4 @@ select[multiple] option:checked {
     background: #ddd;
     vertical-align: middle;
     margin: 0 10px;
-}
+}*/
