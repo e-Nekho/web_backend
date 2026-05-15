@@ -1,7 +1,14 @@
+DROP TABLE IF EXISTS application_languages;
+DROP TABLE IF EXISTS admins;
+DROP TABLE IF EXISTS applications;
+DROP TABLE IF EXISTS programming_languages;
+
 CREATE TABLE applications (
     id INT AUTO_INCREMENT PRIMARY KEY,
+
     login VARCHAR(64) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
+
     fullname VARCHAR(150) NOT NULL,
     phone VARCHAR(20) NOT NULL,
     email VARCHAR(100) NOT NULL,
@@ -17,13 +24,34 @@ CREATE TABLE programming_languages (
 );
 
 INSERT INTO programming_languages (name) VALUES
-('Pascal'), ('C'), ('C++'), ('JavaScript'), ('PHP'),
-('Python'), ('Java'), ('Haskel'), ('Clojure'),
-('Prolog'), ('Scala'), ('Go');
+('Pascal'),
+('C'),
+('C++'),
+('JavaScript'),
+('PHP'),
+('Python'),
+('Java'),
+('Haskel'),
+('Clojure'),
+('Prolog'),
+('Scala'),
+('Go');
 
 CREATE TABLE application_languages (
     application_id INT,
     language_id INT,
-    FOREIGN KEY (application_id) REFERENCES applications(id),
-    FOREIGN KEY (language_id) REFERENCES programming_languages(id)
+
+    FOREIGN KEY (application_id)
+        REFERENCES applications(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (language_id)
+        REFERENCES programming_languages(id)
+);
+
+CREATE TABLE admins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    login VARCHAR(64) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL
 );
