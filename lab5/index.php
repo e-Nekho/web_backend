@@ -404,61 +404,6 @@ if (isset($_POST['save_form'])) {
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap"
           rel="stylesheet">
 
-    <style>
-
-        .hint-box {
-            margin: 0 45px 25px 45px;
-            padding: 18px 20px;
-            background: linear-gradient(
-                135deg,
-                #fff8e7 0%,
-                #fff3cd 100%
-            );
-            border-left: 4px solid #d4af37;
-            border-radius: 14px;
-        }
-
-        .hint-box strong {
-            display: block;
-            margin-bottom: 8px;
-            color: #7a5d00;
-            font-size: 15px;
-        }
-
-        .hint-box p {
-            color: #5f5f5f;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .auth-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-
-            margin: 10px 45px 25px 45px;
-
-            color: #888;
-            font-size: 13px;
-            white-space: nowrap;
-        }
-
-        .auth-divider::before,
-        .auth-divider::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #ddd;
-        }
-
-        .logout-btn {
-            margin: 0 45px 45px 45px;
-            width: calc(100% - 90px);
-        }
-
-    </style>
-
 </head>
 
 <body>
@@ -472,21 +417,6 @@ if (isset($_POST['save_form'])) {
     <p class="subtitle">
         Заполните форму для участия
     </p>
-
-    <div class="hint-box">
-
-        <strong>
-            Как это работает?
-        </strong>
-
-        <p>
-            Сначала заполните и отправьте анкету.
-            После успешной регистрации система автоматически
-            сгенерирует логин и пароль для последующего
-            входа и редактирования данных.
-        </p>
-
-    </div>
 
     <?php if ($success): ?>
 

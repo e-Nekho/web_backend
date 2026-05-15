@@ -451,22 +451,29 @@ select[multiple] option:checked {
 ::-webkit-scrollbar-thumb:hover {
     background: #b8960c;
 }
-/*
-.auth-divider {
-    text-align: center;
-    margin: 20px 0;
-    color: #888;
-    font-size: 13px;
-    position: relative;
-}
 
-.auth-divider::before,
-.auth-divider::after {
-    content: "";
-    display: inline-block;
-    width: 35%;
-    height: 1px;
-    background: #ddd;
-    vertical-align: middle;
-    margin: 0 10px;
-}*/
+.auth-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+
+            margin: 10px 45px 25px 45px;
+
+            color: #888;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .logout-btn {
+            margin: 0 45px 45px 45px;
+            width: calc(100% - 90px);
+        }
