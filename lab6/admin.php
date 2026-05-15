@@ -189,46 +189,191 @@ $stats = $pdo->query("
     <link rel="stylesheet" href="style.css">
 
     <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(
+                135deg,
+                #e8e8e8 0%,
+                #c9c9c9 100%
+            );
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
+            padding: 50px 25px;
         }
 
-        th,
+        .header-decoration {
+            height: 4px;
+
+            background: linear-gradient(
+                90deg,
+                #b8960c 0%,
+                #d4af37 50%,
+                #b8960c 100%
+            );
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 42px;
+
+            font-weight: 600;
+
+            text-align: center;
+
+            margin-top: 40px;
+
+            color: #2c2c2c;
+        }
+
+        .subtitle {
+            text-align: center;
+
+            color: #7a7a7a;
+
+            margin-bottom: 35px;
+
+            font-size: 14px;
+        }
+
+        .stats-box {
+            margin:
+                0 40px 35px 40px;
+
+            padding: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fafafa 0%,
+                    #f2f2f2 100%
+                );
+
+            border:
+                1px solid #e3e3e3;
+
+            border-radius: 18px;
+        }
+
+        .stats-box h3 {
+            margin-bottom: 18px;
+
+            color: #2c2c2c;
+
+            font-size: 22px;
+
+            font-family:
+                'Cormorant Garamond',
+                serif;
+        }
+
+        .stats-box ul {
+            padding-left: 18px;
+        }
+
+        .stats-box li {
+            margin-bottom: 10px;
+
+            color: #4a4a4a;
+        }
+
+        table {
+            width: calc(100% - 80px);
+            margin:
+                0 40px 40px 40px;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border:
+                1px solid #e3e3e3;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+
+            background: white;
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.08);
+
+            overflow: hidden;
+        }
+
         td {
-            border: 1px solid #ddd;
-            padding: 12px;
+            padding: 18px 16px;
+            border-bottom:
+                1px solid #eeeeee;
             vertical-align: top;
+            color: #4a4a4a;
         }
 
         th {
-            background: #f4f4f4;
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8f8f8 0%,
+                    #eeeeee 100%
+                );
+            color: #2c2c2c;
+            font-weight: 600;
+            padding: 18px 16px;
+            border-bottom:
+                1px solid #dddddd;
+            text-align: left;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: #fcfcfc;
         }
 
         .admin-actions {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .admin-btn {
-            padding: 8px 14px;
+            padding: 10px 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             color: white;
             text-decoration: none;
             font-size: 13px;
+            font-weight: 600;
+            transition: 0.25s ease;
+        }
+
+        .admin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 6px 18px rgba(0,0,0,0.15);
         }
 
         .delete-btn {
-            background: #dc3545;
+            background:
+                linear-gradient(
+                    135deg,
+                    #dc3545 0%,
+                    #b52a38 100%
+                );
         }
 
         .edit-btn {
-            background: #b8960c;
+            background:
+                linear-gradient(
+                    135deg,
+                    #d4af37 0%,
+                    #b8960c 100%
+                );
         }
 
         .stats-box {
@@ -244,6 +389,91 @@ $stats = $pdo->query("
 
         .edit-form textarea {
             min-height: 100px;
+        }
+
+        .edit-form {
+            padding: 20px 10px 10px 10px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a4a4a;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border:
+                1.5px solid #dddddd;
+            border-radius: 12px;
+            background: #fafafa;
+            font-family: 'Montserrat', sans-serif;
+            transition: 0.25s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+            background: white;
+            box-shadow:
+                0 0 0 4px rgba(212,175,55,0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 40px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #4a4a4a 0%,
+                    #2c2c2c 100%
+                );
+
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 10px 24px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 1000px) {
+
+            table {
+                display: block;
+
+                overflow-x: auto;
+            }
+
+            .container {
+                border-radius: 18px;
+            }
+
+            h2 {
+                font-size: 34px;
+            }
         }
 
     </style>
