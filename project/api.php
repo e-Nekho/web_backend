@@ -11,6 +11,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // Подключаем твое готовое соединение с БД
 require_once 'db.php'; 
 
+$action = $_GET['action'] ?? '';
+
+// 1. Проверка: авторизован ли пользователь сейчас?
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && $action === 'check_auth') {
+    echo json_encode([
+        'is_logged_in' => isset($_SESSION['user_id']),
+        'user_id' => $_SESSION['user_id'] ?? null
+    ]);
+    exit();
+}
+
+// 2. Действие: Вход (Login)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'login') {
+    // Получаем JSON из тела запроса React
+    $input = json_decode(file_get_contents('php://input'), true);
+    $login = trim($input['login'] ?? '');
+    $password = trim($input['password'] ?? '');
+
+    if (empty($login) || empty($password)) {
+        echo json_encode(['success' => false, 'error' => 'Заполните все поля.']);
+        exit();
+    }
+
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM applications WHERE login = ?");
+        $stmt->execute([$login]);
+        $user = $stmt->fetch();
+
+        if ($user && password_verify($password, $user['password_hash'])) {
+            session_regenerate_id(true);
+            $_SESSION['user_id'] = $user['id'];
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'Неверный логин или пароль.']);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(['success' => false, 'error' => 'Ошибка базы данных.']);
+    }
+    exit();
+}
+
+// 3. Действие: Выход (Logout)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'logout') {
+    session_destroy();
+    echo json_encode(['success' => true]);
+    exit();
+}
+
 // Читаем то, что прислал React
 $data = json_decode(file_get_contents('php://input'), true);
 
