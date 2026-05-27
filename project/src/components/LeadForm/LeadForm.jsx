@@ -1,8 +1,7 @@
-// src/components/FormFooter/FormFooter.jsx
 import React, { useState } from 'react';
 import "../../styles/LeadForm.css";
 
-export default function FormFooter() {
+export default function LeadForm() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -14,6 +13,22 @@ export default function FormFooter() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  // Функция изменения полей (которую требовал ESLint)
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+    
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
 
   const validateForm = () => {
     const newErrors = {};
@@ -53,7 +68,6 @@ export default function FormFooter() {
     setSubmitStatus(null);
 
     try {
-      // Бьем по относительному адресу подпапки на сервере
       const response = await fetch('/tasks/project/api.php', {
         method: 'POST',
         headers: {
@@ -68,7 +82,6 @@ export default function FormFooter() {
         }),
       });
 
-      // Скрипт вернет json с success: true
       const result = await response.json();
 
       if (response.ok && result.success) {
