@@ -7,6 +7,9 @@ header("Content-Type: application/json; charset=UTF-8");
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Подключаем твое готовое соединение с БД
 require_once 'db.php'; 
@@ -74,7 +77,7 @@ $email = trim($data['email'] ?? '');
 $bio = trim($data['message'] ?? '');
 $contract = !empty($data['agreement']) ? 1 : 0;
 
-// Заглушки под твою структуру БД, чтобы не было ошибок NOT NULL
+// Заглушки под структуру БД, чтобы не было ошибок NOT NULL
 $birthdate = '2000-01-01';
 $gender = 'male';
 $login = 'user_' . time() . rand(10, 99);
