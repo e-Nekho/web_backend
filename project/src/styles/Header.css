@@ -1,0 +1,288 @@
+/* src/styles/Header.css */
+:root {
+  --blue: #3498db;
+  --blue-dark: #2980b9;
+  --blue-light: #5dade2;
+  --blue-accent: #2e86c1;
+  --gray-dark: #1a1a2e;
+  --header-height: 80px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 1000;
+  background-color: rgba(0, 0, 3, 0.9);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.header.visible {
+  transform: translateY(0);
+}
+
+.header.hidden {
+  transform: translateY(-100%);
+}
+
+.header-container {
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Логотип */
+.logo-container {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 60px;
+  width: 60px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.header-logo:hover {
+  transform: scale(1.05);
+}
+
+/* Навигация */
+.nav-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-list {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 0;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--blue-light);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue-light), var(--blue));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Правая часть */
+.header-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Телефон */
+.phone-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.phone-icon {
+  font-size: 20px;
+  color: var(--blue-light);
+}
+
+.phone-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.phone-link:hover {
+  color: var(--blue-light);
+  text-decoration: underline;
+}
+
+/* Переключатель языка */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.language-switcher:hover {
+  background: rgba(52, 152, 219, 0.2);
+}
+
+.language-option {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.language-option.active {
+  color: var(--blue-light);
+  background: rgba(52, 152, 219, 0.1);
+}
+
+.language-divider {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 500;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .nav-list {
+    gap: 30px;
+  }
+  
+  .header-right {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header-container {
+    padding: 0 30px;
+  }
+  
+  .nav-list {
+    gap: 25px;
+  }
+  
+  .nav-link {
+    font-size: 15px;
+  }
+  
+  .phone-link {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-list {
+    gap: 20px;
+  }
+  
+  .phone-link {
+    display: none;
+  }
+  
+  .phone-icon {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 70px;
+  }
+  
+  .header-container {
+    padding: 0 20px;
+  }
+  
+  .nav-list {
+    gap: 15px;
+  }
+  
+  .nav-link {
+    font-size: 14px;
+  }
+  
+  .header-logo {
+    height: 35px;
+    width: 35px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .header-container {
+    justify-content: space-between;
+  }
+  
+  .phone-container {
+    display: none;
+  }
+  
+  .language-switcher {
+    padding: 6px 10px;
+  }
+  
+  .language-option {
+    font-size: 13px;
+  }
+}
+
+/* Для плавной прокрутки */
+#direction,
+#pricing,
+#tasks,
+#reviews,
+#form {
+  scroll-margin-top: calc(var(--header-height) + 20px);
+}
+
+/* Для пользователей с настройками доступности */
+@media (prefers-reduced-motion: reduce) {
+  .header {
+    transition: none;
+  }
+  
+  .nav-link,
+  .phone-link,
+  .language-switcher {
+    transition: none;
+  }
+}

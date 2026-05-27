@@ -1,0 +1,379 @@
+/* src/styles/Expertise.css */
+:root {
+  --blue: #3498db;
+  --blue-dark: #2980b9;
+  --blue-light: #5dade2;
+  --blue-accent: #2e86c1;
+  --gray-dark: #1a1a2e;
+}
+
+.expertise-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #040613 0%, #0a0c1f 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.expertise-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--blue-light) 50%, 
+    transparent 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.section-title {
+  font-size: 48px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue-light), var(--blue));
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: #b0b0d0;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Таблица */
+.expertise-table {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Заголовок таблицы */
+.table-header {
+  padding: 50px 40px;
+  background: linear-gradient(135deg, 
+    rgba(52, 152, 219, 0.1) 0%, 
+    rgba(41, 128, 185, 0.05) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.main-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.main-header h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.header-description {
+  font-size: 18px;
+  color: #b0b0d0;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Тело таблицы */
+.table-body {
+  padding: 40px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  padding: 30px 0;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards;
+}
+
+.table-row:nth-child(1) { animation-delay: 0.1s; }
+.table-row:nth-child(2) { animation-delay: 0.2s; }
+.table-row:nth-child(3) { animation-delay: 0.3s; }
+.table-row:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.row-header {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.row-number {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue-light);
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+
+.row-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  position: relative;
+  display: inline-block;
+}
+
+.row-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--blue-light);
+  border-radius: 2px;
+}
+
+.row-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row-text {
+  font-size: 17px;
+  color: #d0d0e0;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.row-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #a0a0c0;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.meta-item:hover {
+  background: rgba(52, 152, 219, 0.1);
+  color: #fff;
+  border-color: var(--blue-light);
+  transform: translateY(-2px);
+}
+
+.meta-icon {
+  color: var(--blue-light);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.row-divider {
+  grid-column: 1 / -1;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    transparent 100%);
+  margin-top: 30px;
+}
+
+.table-row:last-child .row-divider {
+  display: none;
+}
+
+/* Анимации при наведении */
+.table-row {
+  transition: all 0.3s ease;
+}
+
+.table-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 30px;
+  margin: 0 -30px;
+}
+
+.table-row:hover .row-title {
+  color: var(--blue-light);
+}
+
+.table-row:hover .row-title::after {
+  width: 60px;
+  background: var(--blue);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .table-row {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .row-header {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .row-number {
+    margin-bottom: 0;
+  }
+  
+  .table-row:hover {
+    margin: 0 -20px;
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .expertise-section {
+    padding: 60px 20px;
+  }
+  
+  .section-title {
+    font-size: 36px;
+  }
+  
+  .section-subtitle {
+    font-size: 16px;
+  }
+  
+  .table-header {
+    padding: 40px 30px;
+  }
+  
+  .main-header h3 {
+    font-size: 28px;
+  }
+  
+  .header-description {
+    font-size: 16px;
+  }
+  
+  .table-body {
+    padding: 30px 20px;
+  }
+  
+  .row-title {
+    font-size: 22px;
+  }
+  
+  .row-text {
+    font-size: 16px;
+  }
+  
+  .header-icon {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 32px;
+  }
+  
+  .table-header {
+    padding: 30px 20px;
+  }
+  
+  .main-header h3 {
+    font-size: 24px;
+  }
+  
+  .row-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .row-meta {
+    gap: 10px;
+  }
+  
+  .meta-item {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Для пользователей с настройками доступности */
+@media (prefers-reduced-motion: reduce) {
+  .header-icon {
+    animation: none;
+  }
+  
+  .table-row {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .meta-item:hover {
+    transform: none;
+  }
+  
+  .table-row:hover {
+    transform: none;
+  }
+}

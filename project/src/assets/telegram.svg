@@ -1,0 +1,62 @@
+<svg width="455" height="455" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_1">
+   <path fill="#f14d34" id="svg_2" fill-rule="evenodd" clip-rule="evenodd" d="m0,0l0,455l455,0l0,-455l-455,0zm384.814,100.68l-53.458,257.136c-1.259,6.071 -8.378,8.822 -13.401,5.172l-72.975,-52.981c-4.43,-3.217 -10.471,-3.046 -14.712,0.412l-40.46,32.981c-4.695,3.84 -11.771,1.7 -13.569,-4.083l-28.094,-90.351l-72.583,-27.089c-7.373,-2.762 -7.436,-13.171 -0.084,-16.003l297.882,-114.915c6.315,-2.442 12.83,3.09 11.454,9.721z"/>
+   <path fill="#f14d34" id="svg_3" fill-rule="evenodd" clip-rule="evenodd" d="m313.567,147.179l-141.854,87.367c-5.437,3.355 -7.996,9.921 -6.242,16.068l15.337,53.891c1.091,3.818 6.631,3.428 7.162,-0.517l3.986,-29.553c0.753,-5.564 3.406,-10.693 7.522,-14.522l117.069,-108.822c2.192,-2.03 -0.432,-5.477 -2.98,-3.912z"/>
+  </g>
+  <g id="svg_4"/>
+  <g id="svg_5"/>
+  <g id="svg_6"/>
+  <g id="svg_7"/>
+  <g id="svg_8"/>
+  <g id="svg_9"/>
+  <g id="svg_10"/>
+  <g id="svg_11"/>
+  <g id="svg_12"/>
+  <g id="svg_13"/>
+  <g id="svg_14"/>
+  <g id="svg_15"/>
+  <g id="svg_16"/>
+  <g id="svg_17"/>
+  <g id="svg_18"/>
+  <path transform="rotate(-0.5396891236305237 294.0047302246086,143.00000000000168) " d="m287.00473,147.5c0,-2 4,-3 6,-5l4,-2l3,-1l1,-1" id="svg_19" stroke-opacity="null" stroke-width="null" stroke="null" fill="none"/>
+  <path d="m256.00473,147.5c-256.00473,-147.5 -256.00473,-147.5 -256.00473,-147.5l258.00473,147.5l4,0l4,-2" id="svg_20" stroke-opacity="null" stroke-width="null" stroke="null" fill="#ffffff"/>
+  <path d="m321.00473,159.5c1,0 2.925537,6.788544 5,18c1.828491,9.882141 2,19 2,29c0,10 -5,25 -11,39l-7,18l-1,1" id="svg_21" stroke-opacity="null" stroke-width="null" stroke="null" fill="none"/>
+  <path d="m66.004715,58.5c5,-3 10,-5 24,-5l17,-3l30,-3" id="svg_22" stroke-opacity="null" stroke-width="null" stroke="null" fill="none"/>
+  <rect id="svg_25" height="604" width="837" y="-89.500001" x="-207.995285" stroke-opacity="null" stroke-width="null" stroke="null" fill="#ffffff"/>
+  <g stroke="null" id="svg_69">
+   <g stroke="null" transform="matrix(1.0423825533269504,0,0,1.0363462365569334,-1211.2434024469892,-1245.9124482508769) " id="svg_67">
+    <title stroke="null" transform="translate(-10.332415580749512,0) translate(-5.90197229385376,0) translate(-595.1583251953125,-631.5966186523438) translate(1757.4998779296875,0) translate(0,1820.4998779296875) ">background</title>
+    <rect stroke="null" x="1145.107165" y="1187.903259" width="582" height="402" id="svg_65" fill="none"/>
+   </g>
+   <g stroke="null" transform="matrix(1.0423825533269504,0,0,1.0363462365569334,-1211.2434024469892,-1245.9124482508769) " id="svg_68">
+    <title stroke="null" transform="translate(-10.332415580749512,0) translate(-5.90197229385376,0) translate(-595.1583251953125,-631.5966186523438) translate(1757.4998779296875,0) translate(0,1820.4998779296875) ">Layer 1</title>
+    <g stroke="null" id="svg_62">
+     <path stroke="null" d="m1146.107165,1188.903259l0,455l455,0l0,-455l-455,0zm384.814,100.68l-53.458,257.136c-1.259,6.071 -8.378,8.822 -13.401,5.172l-72.975,-52.981c-4.43,-3.217 -10.471,-3.046 -14.712,0.412l-40.46,32.981c-4.695,3.84 -11.771,1.7 -13.569,-4.083l-28.094,-90.351l-72.583,-27.089c-7.373,-2.762 -7.436,-13.171 -0.084,-16.003l297.882,-114.915c6.315,-2.442 12.83,3.09 11.454,9.721z" clip-rule="evenodd" fill-rule="evenodd" id="svg_64" fill="#f14d34"/>
+     <path stroke="null" d="m1459.674165,1336.082259l-141.854,87.367c-5.437,3.355 -7.996,9.921 -6.242,16.068l15.337,53.891c1.091,3.818 6.631,3.428 7.162,-0.517l3.986,-29.553c0.753,-5.564 3.406,-10.693 7.522,-14.522l117.069,-108.822c2.192,-2.03 -0.432,-5.477 -2.98,-3.912z" clip-rule="evenodd" fill-rule="evenodd" id="svg_63" fill="#f14d34"/>
+    </g>
+    <g stroke="null" id="svg_61"/>
+    <g stroke="null" id="svg_60"/>
+    <g stroke="null" id="svg_59"/>
+    <g stroke="null" id="svg_58"/>
+    <g stroke="null" id="svg_57"/>
+    <g stroke="null" id="svg_56"/>
+    <g stroke="null" id="svg_55"/>
+    <g stroke="null" id="svg_54"/>
+    <g stroke="null" id="svg_53"/>
+    <g stroke="null" id="svg_52"/>
+    <g stroke="null" id="svg_51"/>
+    <g stroke="null" id="svg_50"/>
+    <g stroke="null" id="svg_49"/>
+    <g stroke="null" id="svg_48"/>
+    <g stroke="null" id="svg_47"/>
+   </g>
+  </g>
+ </g>
+</svg>

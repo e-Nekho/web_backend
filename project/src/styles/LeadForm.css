@@ -1,0 +1,552 @@
+/* src/styles/FormFooter.css */
+:root {
+  --blue: #3498db;
+  --blue-dark: #2980b9;
+  --blue-light: #5dade2;
+  --blue-accent: #2e86c1;
+}
+
+/* Форма */
+.form-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #040613 0%, #0a0c1f 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--blue-light) 50%, 
+    transparent 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.form-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Левая часть - информация */
+.form-info {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.info-header {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.info-title {
+  font-size: 48px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.info-title .highlight {
+  background: linear-gradient(135deg, var(--blue-light), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-content p {
+  font-size: 18px;
+  color: #d0d0e0;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Контактные данные */
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(52, 152, 219, 0.3);
+  transform: translateY(-5px);
+}
+
+.contact-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.contact-content {
+  flex: 1;
+}
+
+.contact-label {
+  font-size: 16px;
+  color: #b0b0d0;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contact-value {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-value:hover {
+  color: var(--blue-light);
+  text-decoration: underline;
+}
+
+/* Правая часть - форма */
+.form-container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 50px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-label::after {
+  content: '*';
+  color: var(--blue-light);
+  font-size: 18px;
+}
+
+.form-input,
+.form-textarea {
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-size: 16px;
+  color: #fff;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--blue-light);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.form-input.error,
+.form-textarea.error {
+  border-color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Checkbox */
+.checkbox-group {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.form-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.checkbox-label {
+  font-size: 14px;
+  color: #d0d0e0;
+  line-height: 1.5;
+  cursor: pointer;
+  flex: 1;
+}
+
+.checkbox-label a {
+  color: var(--blue-light);
+  text-decoration: none;
+}
+
+.checkbox-label a:hover {
+  text-decoration: underline;
+}
+
+/* Кнопка отправки */
+.submit-button {
+  padding: 18px;
+  background: linear-gradient(135deg, var(--blue-light), var(--blue));
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  transition: all 0.6s ease;
+  z-index: -1;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+}
+
+.submit-button:hover:not(:disabled)::before {
+  left: 0;
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Сообщения */
+.error-message {
+  font-size: 14px;
+  color: #e74c3c;
+  margin-top: 4px;
+}
+
+.success-message {
+  padding: 15px;
+  background: rgba(46, 204, 113, 0.1);
+  border: 1px solid #2ecc71;
+  border-radius: 12px;
+  color: #2ecc71;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Футер */
+.footer-section {
+  padding: 60px 20px 40px;
+  background: #000003;
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  margin-bottom: 60px;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.logo-text {
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue-light), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-tagline {
+  font-size: 16px;
+  color: #b0b0d0;
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.links-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.links-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.footer-link {
+  font-size: 15px;
+  color: #b0b0d0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  color: var(--blue-light);
+  transform: translateX(5px);
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: var(--blue-light);
+  transform: translateY(-3px);
+}
+
+/* Нижняя часть футера */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright {
+  font-size: 14px;
+  color: #888;
+}
+
+.legal-links {
+  display: flex;
+  gap: 30px;
+}
+
+.legal-link {
+  font-size: 14px;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.legal-link:hover {
+  color: var(--blue-light);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .form-wrapper {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  
+  .form-info {
+    gap: 40px;
+  }
+  
+  .info-title {
+    font-size: 42px;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .footer-links {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-section {
+    padding: 60px 20px;
+  }
+  
+  .info-title {
+    font-size: 36px;
+  }
+  
+  .info-content p {
+    font-size: 16px;
+  }
+  
+  .form-container {
+    padding: 40px 30px;
+  }
+  
+  .contact-form {
+    gap: 20px;
+  }
+  
+  .footer-links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .legal-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .info-title {
+    font-size: 32px;
+  }
+  
+  .contact-item {
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .contact-value {
+    font-size: 18px;
+  }
+  
+  .form-container {
+    padding: 30px 20px;
+  }
+  
+  .footer-links {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .links-column {
+    text-align: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
+
+/* Для пользователей с настройками доступности */
+@media (prefers-reduced-motion: reduce) {
+  .contact-item,
+  .submit-button,
+  .footer-link,
+  .social-link,
+  .legal-link,
+  .form-input,
+  .form-textarea {
+    transition: none;
+  }
+  
+  .contact-item:hover,
+  .submit-button:hover,
+  .footer-link:hover,
+  .social-link:hover {
+    transform: none;
+  }
+}

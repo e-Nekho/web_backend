@@ -50,13 +50,29 @@
         <li><a href="lab2/index.html">Лабораторная работа 2</a></li>
         <li><a href="lab3/index.php">Лабораторная работа 3</a></li>
         <li><a href="lab4/index.php">Лабораторная работа 4</a></li>
-        <li><a href="lab5/index.php">Лабораторная работа 5 (WIP)</a></li>
-        <li><a href="lab6/index.php">Лабораторная работа 6 (WIP)</a></li>
-        <li><a href="lab7/index.php">Лабораторная работа 7 (WIP)</a></li>
+        <li><a href="lab5/index.php">Лабораторная работа 5</a></li>
+        <li><a href="lab6/index.php">Лабораторная работа 6</a></li>
+        <li><a href="#" onclick="redirectToReact('lab7/project.html')">Проектная работа</a></li>
     </ul>
 
     <footer>
         <p><small>Используйте кнопку "Назад" в браузере чтобы вернуться к этому меню</small></p>
     </footer>
+
+    <script>
+        function redirectToReact(ref) {
+            // Сохраняем текущий путь для возможного возврата
+            sessionStorage.setItem('returnPath', window.location.pathname);
+            
+            // Редирект на React приложение
+            window.location.href = ref;
+        }
+
+        // Автоматический редирект если нужно
+        // Например, если пользователь попал сюда по ошибке
+        if (window.location.search.includes('redirect=react')) {
+            redirectToReact();
+        }
+    </script>
 </body>
 </html>

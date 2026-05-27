@@ -1,0 +1,433 @@
+/* src/styles/Tasks.css */
+:root {
+  --blue: #3498db;
+  --blue-dark: #2980b9;
+  --blue-light: #5dade2;
+  --blue-accent: #2e86c1;
+  --green: #2ecc71;
+  --orange: #e67e22;
+  --purple: #9b59b6;
+}
+
+.tasks-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f9ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.tasks-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--blue-light) 50%, 
+    transparent 100%);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-title {
+  font-size: 48px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue-light), var(--blue));
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Сетка 3x3 */
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 40px;
+  position: relative;
+}
+
+/* Карточки задач */
+.task-card {
+  background: white;
+  border-radius: 24px;
+  padding: 35px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  border: 2px solid transparent;
+  opacity: 0;
+  animation: fadeInUp 0.6s forwards;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 320px;
+}
+
+.task-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(52, 152, 219, 0.15);
+  z-index: 10;
+}
+
+/* Уровни сложности */
+.complexity-начальный {
+  border-color: var(--green);
+}
+
+.complexity-средний {
+  border-color: var(--orange);
+}
+
+.complexity-продвинутый {
+  border-color: var(--purple);
+}
+
+.complexity-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.complexity-начальный .complexity-badge {
+  background: rgba(46, 204, 113, 0.1);
+  color: var(--green);
+}
+
+.complexity-средний .complexity-badge {
+  background: rgba(230, 126, 34, 0.1);
+  color: var(--orange);
+}
+
+.complexity-продвинутый .complexity-badge {
+  background: rgba(155, 89, 182, 0.1);
+  color: var(--purple);
+}
+
+/* Заголовок задачи */
+.task-header {
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.task-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.task-tech {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.tech-tag {
+  font-size: 11px;
+  padding: 5px 10px;
+  background: rgba(52, 152, 219, 0.1);
+  color: var(--blue);
+  border-radius: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.task-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a1a2e;
+  line-height: 1.3;
+  margin: 0;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+/* Содержимое задачи */
+.task-content {
+  margin-bottom: 25px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.task-description {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 72px;
+}
+
+.task-card:hover .task-description {
+  -webkit-line-clamp: 4;
+}
+
+/* Футер задачи */
+.task-footer {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.task-button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--blue-light), var(--blue));
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.task-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  transition: all 0.6s ease;
+  z-index: -1;
+}
+
+.task-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+}
+
+.task-button:hover::before {
+  left: 0;
+}
+
+.button-arrow {
+  font-size: 18px;
+  font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+.task-button:hover .button-arrow {
+  transform: translateX(5px);
+}
+
+/* Декоративные элементы */
+.task-decoration {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.task-card:hover .task-decoration {
+  opacity: 0.7;
+}
+
+.decoration-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--blue);
+  border-radius: 50%;
+  margin-left: auto;
+}
+
+.decoration-line {
+  width: 20px;
+  height: 2px;
+  background: var(--blue);
+  margin-top: 5px;
+  margin-left: auto;
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-card {
+  animation: fadeInUp 0.6s forwards;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .tasks-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, auto);
+    gap: 30px;
+  }
+  
+  .task-card {
+    padding: 30px;
+    min-height: 300px;
+  }
+  
+  .task-title {
+    font-size: 20px;
+    min-height: 52px;
+  }
+  
+  .task-description {
+    font-size: 14px;
+    min-height: 68px;
+    -webkit-line-clamp: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .tasks-section {
+    padding: 60px 20px;
+  }
+  
+  .section-title {
+    font-size: 36px;
+  }
+  
+  .section-subtitle {
+    font-size: 16px;
+  }
+  
+  .tasks-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(9, auto);
+    gap: 25px;
+  }
+  
+  .task-card {
+    padding: 25px;
+    min-height: 280px;
+  }
+  
+  .task-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .task-title {
+    font-size: 20px;
+    min-height: auto;
+  }
+  
+  .task-description {
+    font-size: 14px;
+    min-height: auto;
+    -webkit-line-clamp: 3;
+  }
+  
+  .task-description:hover {
+    -webkit-line-clamp: 4;
+  }
+  
+  .task-button {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .tech-tag {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 32px;
+  }
+  
+  .task-card {
+    padding: 20px;
+    min-height: 260px;
+  }
+  
+  .task-title {
+    font-size: 18px;
+  }
+  
+  .task-description {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  
+  .complexity-badge {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  .task-tech {
+    gap: 6px;
+  }
+}
+
+/* Для пользователей с настройками доступности */
+@media (prefers-reduced-motion: reduce) {
+  .task-card {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .task-card:hover {
+    transform: none;
+  }
+  
+  .task-button:hover {
+    transform: none;
+  }
+  
+  .task-button:hover .button-arrow {
+    transform: none;
+  }
+}

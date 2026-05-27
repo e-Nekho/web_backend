@@ -1,0 +1,775 @@
+/* src/styles/Pricing.css */
+:root {
+  --blue: #3498db;
+  --blue-dark: #2980b9;
+  --blue-light: #5dade2;
+  --blue-accent: #2e86c1;
+  --purple: #9b59b6;
+  --purple-dark: #8e44ad;
+  --gold: #f1c40f;
+  --gold-dark: #f39c12;
+  --gray: #95a5a6;
+  --gray-dark: #7f8c8d;
+}
+
+.pricing-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2f6 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--blue-light) 50%, 
+    transparent 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.section-title {
+  font-size: 48px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue-light), var(--blue));
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Карусель */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  flex: 1;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--blue-light);
+  color: var(--blue);
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.carousel-button:hover:not(:disabled) {
+  background: var(--blue-light);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+}
+
+.carousel-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: #ccc;
+  color: #ccc;
+}
+
+/* Карточки тарифов */
+.pricing-card {
+  background: white;
+  border-radius: 24px;
+  padding: 40px 30px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  border: 3px solid transparent;
+  display: flex;
+  flex-direction: column;
+  min-height: 650px;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Цвета карточек */
+.pricing-card.gray {
+  border-color: #eee;
+}
+
+.pricing-card.blue {
+  border-color: var(--blue-light);
+}
+
+.pricing-card.purple {
+  border-color: var(--purple);
+}
+
+.pricing-card.gold {
+  border-color: var(--gold);
+}
+
+/* Популярный тариф */
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: white;
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  z-index: 2;
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+/* Заголовок карточки */
+.card-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.card-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 25px;
+  line-height: 1.2;
+}
+
+/* Ценовая секция */
+.price-section {
+  margin-bottom: 15px;
+}
+
+.price-main {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Цвета цен для разных тарифов */
+.pricing-card.blue .price-main {
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.pricing-card.purple .price-main {
+  background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.pricing-card.gold .price-main {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.pricing-card.gray .price-main {
+  background: linear-gradient(135deg, var(--gray), var(--gray-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.price-period {
+  font-size: 16px;
+  color: #888;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* Годовая цена */
+.year-pricing {
+  margin-top: 15px;
+  padding: 15px;
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.08), rgba(41, 128, 185, 0.04));
+  border-radius: 12px;
+  border: 1px solid rgba(52, 152, 219, 0.1);
+}
+
+.year-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.year-price-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.year-price-period {
+  font-size: 14px;
+  color: #888;
+  font-weight: 500;
+}
+
+.discount-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.discount-percent {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--blue-dark);
+}
+
+.discount-text {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bonus-text {
+  font-size: 14px;
+  color: var(--blue);
+  font-weight: 600;
+  padding: 8px 16px;
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: 12px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Содержимое карточки */
+.card-content {
+  flex: 1;
+  margin-bottom: 30px;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, var(--blue-light), var(--blue));
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.feature-text {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* Цвета иконок для разных тарифов */
+.pricing-card.blue .feature-icon {
+  background: linear-gradient(135deg, var(--blue-light), var(--blue));
+}
+
+.pricing-card.purple .feature-icon {
+  background: linear-gradient(135deg, #bb8fce, var(--purple));
+}
+
+.pricing-card.gold .feature-icon {
+  background: linear-gradient(135deg, #f7dc6f, var(--gold));
+}
+
+.pricing-card.gray .feature-icon {
+  background: linear-gradient(135deg, #bdc3c7, var(--gray));
+}
+
+/* Футер карточки */
+.card-footer {
+  text-align: center;
+}
+
+.select-button {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.select-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  transition: all 0.6s ease;
+  z-index: -1;
+}
+
+/* Цвета кнопок для разных тарифов */
+.pricing-card.gray .select-button {
+  background: #eee;
+  color: #666;
+}
+
+.pricing-card.gray .select-button::before {
+  background: linear-gradient(135deg, #ddd, #bbb);
+}
+
+.pricing-card.blue .select-button {
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: white;
+}
+
+.pricing-card.blue .select-button::before {
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+}
+
+.pricing-card.purple .select-button {
+  background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+  color: white;
+}
+
+.pricing-card.purple .select-button::before {
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+}
+
+.pricing-card.gold .select-button {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: #333;
+}
+
+.pricing-card.gold .select-button::before {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+}
+
+.select-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.select-button:hover::before {
+  left: 0;
+}
+
+.select-button:active {
+  transform: translateY(0);
+}
+
+.saving-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(52, 152, 219, 0.06);
+  border-radius: 10px;
+  opacity: 0.8;
+}
+
+.saving-icon {
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.saving-text {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Навигационные точки */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 60px;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.carousel-dot:hover:not(.active) {
+  background: #bbb;
+  transform: scale(1.2);
+}
+
+.carousel-dot.active {
+  background: var(--blue);
+  transform: scale(1.3);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Предложение индивидуального тарифа */
+.custom-offer {
+  text-align: center;
+  padding: 50px;
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(41, 128, 185, 0.05) 100%);
+  border-radius: 24px;
+  border: 2px dashed var(--blue-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-offer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+.offer-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: inline-block;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.offer-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 15px;
+}
+
+.offer-description {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+.custom-button {
+  padding: 18px 40px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.custom-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+  transition: all 0.6s ease;
+  z-index: -1;
+}
+
+.custom-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(52, 152, 219, 0.3);
+}
+
+.custom-button:hover::before {
+  left: 0;
+}
+
+.custom-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .carousel-button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .pricing-card {
+    min-height: 680px;
+  }
+}
+
+@media (max-width: 992px) {
+  .carousel-container {
+    gap: 15px;
+  }
+  
+  .carousel-button {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+  
+  .pricing-card {
+    padding: 30px 25px;
+  }
+  
+  .price-main {
+    font-size: 42px;
+  }
+  
+  .year-price-value {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-section {
+    padding: 60px 20px;
+  }
+  
+  .section-title {
+    font-size: 36px;
+  }
+  
+  .section-subtitle {
+    font-size: 16px;
+  }
+  
+  .carousel-container {
+    gap: 10px;
+    margin-bottom: 50px;
+  }
+  
+  .carousel-button {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+  
+  .carousel-button.prev {
+    left: 10px;
+  }
+  
+  .carousel-button.next {
+    right: 10px;
+  }
+  
+  .carousel-wrapper {
+    margin: 0 60px;
+  }
+  
+  .pricing-card {
+    min-height: 650px;
+    padding: 25px 20px;
+    margin-right: 20px !important;
+  }
+  
+  .popular-badge {
+    padding: 6px 18px;
+    font-size: 13px;
+  }
+  
+  .card-title {
+    font-size: 24px;
+  }
+  
+  .price-main {
+    font-size: 38px;
+  }
+  
+  .year-pricing {
+    padding: 12px;
+  }
+  
+  .year-price-value {
+    font-size: 20px;
+  }
+  
+  .custom-offer {
+    padding: 40px 30px;
+  }
+  
+  .offer-title {
+    font-size: 28px;
+  }
+  
+  .offer-description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-wrapper {
+    margin: 0 50px;
+  }
+  
+  .carousel-button {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .pricing-card {
+    min-height: 620px;
+    padding: 20px 15px;
+  }
+  
+  .price-main {
+    font-size: 34px;
+  }
+  
+  .card-title {
+    font-size: 22px;
+  }
+  
+  .feature-text {
+    font-size: 14px;
+  }
+  
+  .custom-offer {
+    padding: 30px 20px;
+  }
+  
+  .offer-title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 32px;
+  }
+  
+  .carousel-wrapper {
+    margin: 0 40px;
+  }
+  
+  .pricing-card {
+    min-height: 600px;
+  }
+}
+
+/* Для пользователей с настройками доступности */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track,
+  .pricing-card,
+  .select-button,
+  .custom-button,
+  .carousel-dot {
+    transition: none;
+  }
+  
+  .pricing-card:hover {
+    transform: none;
+  }
+  
+  .select-button:hover,
+  .custom-button:hover {
+    transform: none;
+  }
+  
+  .offer-icon,
+  .custom-offer::before {
+    animation: none;
+  }
+}
